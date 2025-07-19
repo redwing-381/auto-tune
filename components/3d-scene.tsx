@@ -35,4 +35,4 @@ export function Scene3D() {
 }
 
 // Required for GLTF loading
-useGLTF.preload("/street.glb") 
+useGLTF.preload("/street.glb")
