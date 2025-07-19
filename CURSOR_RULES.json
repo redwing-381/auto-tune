@@ -1,0 +1,141 @@
+{
+  "rules": [
+    {
+      "name": "TypeScript Strict Mode",
+      "description": "Always use TypeScript with strict mode enabled. Define proper types for all props, state, and function parameters.",
+      "pattern": "*.{ts,tsx}",
+      "enforce": true
+    },
+    {
+      "name": "React Functional Components",
+      "description": "Use functional components with hooks instead of class components. Prefer arrow functions for component definitions.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Tailwind CSS Classes",
+      "description": "Use Tailwind CSS utility classes directly in className props. Follow the design system defined in CURSOR_CONTEXT.md for consistent styling.",
+      "pattern": "*.{tsx,jsx}",
+      "enforce": true
+    },
+    {
+      "name": "shadcn/ui Components",
+      "description": "Import UI components from @/components/ui/* instead of creating custom implementations. Use the existing Button, Card, Input, etc. components.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "File Naming Convention",
+      "description": "Use kebab-case for file names (e.g., training-dashboard.tsx, model-selector.tsx). Use PascalCase for component names.",
+      "pattern": "*",
+      "enforce": true
+    },
+    {
+      "name": "Import Organization",
+      "description": "Organize imports in this order: 1) React/Next.js, 2) Third-party libraries, 3) Internal components, 4) Types, 5) Utils/helpers",
+      "pattern": "*.{ts,tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Error Handling",
+      "description": "Always implement proper error handling with try-catch blocks for async operations and error boundaries for components.",
+      "pattern": "*.{ts,tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Loading States",
+      "description": "Implement loading states for all async operations using useState and conditional rendering or skeleton components.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Responsive Design",
+      "description": "Use mobile-first responsive design with Tailwind breakpoints (sm:, md:, lg:, xl:). Test on all screen sizes.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Accessibility",
+      "description": "Include proper ARIA labels, semantic HTML elements, and keyboard navigation support. Use proper heading hierarchy.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "State Management",
+      "description": "Use useState for local state, useRef for values that don't trigger re-renders, and sessionStorage for data persistence between pages.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Performance Optimization",
+      "description": "Use React.memo, useMemo, and useCallback appropriately. Avoid unnecessary re-renders and optimize expensive computations.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "Form Handling",
+      "description": "Use controlled components for forms with proper validation. Implement real-time validation feedback and error states.",
+      "pattern": "*.{tsx}",
+      "enforce": true
+    },
+    {
+      "name": "API Integration",
+      "description": "Create proper API route handlers in app/api/* for server-side logic. Use proper HTTP status codes and error responses.",
+      "pattern": "app/api/**/*.{ts}",
+      "enforce": true
+    },
+    {
+      "name": "Environment Variables",
+      "description": "Use NEXT_PUBLIC_ prefix for client-side environment variables. Keep sensitive data server-side only.",
+      "pattern": "*.{ts,tsx}",
+      "enforce": true
+    }
+  ],
+  "preferences": {
+    "componentStyle": "functional",
+    "stateManagement": "hooks",
+    "styling": "tailwind",
+    "uiLibrary": "shadcn",
+    "iconLibrary": "lucide-react",
+    "formLibrary": "react-hook-form",
+    "validationLibrary": "zod",
+    "testingFramework": "jest",
+    "deploymentPlatform": "vercel"
+  },
+  "codePatterns": {
+    "pageComponent": {
+      "template": "export default function PageName() {\n  // State and hooks\n  // Effects\n  // Event handlers\n  // Render guards\n  // Main render\n  return (\n    <div className=\"min-h-screen py-12 px-4 sm:px-6 lg:px-8\">\n      {/* Content */}\n    </div>\n  )\n}",
+      "description": "Standard page component structure"
+    },
+    "apiRoute": {
+      "template": "import { NextRequest, NextResponse } from 'next/server'\n\nexport async function GET(request: NextRequest) {\n  try {\n    // Logic here\n    return NextResponse.json({ success: true, data })\n  } catch (error) {\n    return NextResponse.json({ success: false, error: error.message }, { status: 500 })\n  }\n}",
+      "description": "Standard API route structure"
+    },
+    "formComponent": {
+      "template": "interface FormProps {\n  onSubmit: (data: FormData) => void\n}\n\nexport function FormComponent({ onSubmit }: FormProps) {\n  const [formData, setFormData] = useState({})\n  const [errors, setErrors] = useState({})\n  \n  const handleSubmit = (e: React.FormEvent) => {\n    e.preventDefault()\n    if (validateForm()) {\n      onSubmit(formData)\n    }\n  }\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      {/* Form fields */}\n    </form>\n  )\n}",
+      "description": "Standard form component structure"
+    }
+  },
+  "antiPatterns": [
+    {
+      "pattern": "useEffect with missing dependencies",
+      "description": "Always include all dependencies in useEffect dependency array or use useCallback/useMemo appropriately"
+    },
+    {
+      "pattern": "Inline styles instead of Tailwind",
+      "description": "Use Tailwind CSS classes instead of inline styles for consistency"
+    },
+    {
+      "pattern": "Mutating state directly",
+      "description": "Always use setState functions and avoid direct state mutation"
+    },
+    {
+      "pattern": "Missing error boundaries",
+      "description": "Implement error boundaries for components that might throw errors"
+    },
+    {
+      "pattern": "Hardcoded API URLs",
+      "description": "Use environment variables for API endpoints and external URLs"
+    }
+  ]
+}
